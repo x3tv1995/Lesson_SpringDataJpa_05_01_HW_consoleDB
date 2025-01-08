@@ -7,10 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @NoArgsConstructor
-
+//@Table(name = "employee", indexes = {
+//        @Index(name = "idx_employee_salary", columnList = "salary"),
+//
+//})
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +23,12 @@ public class Employee {
 
     private String firstName;
     private String post;
+
     private int salary;
 
-    @ManyToOne
+    private LocalDate date_joined;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_company")
     @ToString.Exclude
     private Company company;
@@ -64,11 +72,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Company getCompany() {
-        return company;
-    }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+
 }

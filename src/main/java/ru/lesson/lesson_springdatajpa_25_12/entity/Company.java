@@ -23,7 +23,7 @@ public class Company {
     private String companyAddress;
     private LocalDate date;
 
-    @OneToMany(mappedBy = "company",cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE},fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company",cascade = {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REMOVE},fetch = FetchType.LAZY)
     private List<Employee> employees = new ArrayList<>();
 
     public Company(String companyName, String companyAddress, LocalDate date) {
